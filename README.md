@@ -1,6 +1,6 @@
 Negocio de Videojuegos
 
-Integrantes: Osvaldo León Pérez
+Integrante: Osvaldo León Pérez
 
 Descripción del Proyecto
 En un Negocio de Video juegos se rentan consolas de video juego de manera local. Se lleva a cabo el registro de gran parte de sus estadísticas y actividades, con el fin de brindar un mejor servicio a sus clientes y llevar un control mas claro del negocio.
