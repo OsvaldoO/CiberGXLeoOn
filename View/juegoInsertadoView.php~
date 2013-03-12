@@ -1,0 +1,9 @@
+<?php
+
+	echo 'JUEGO REGISTRADO';
+	echo $cliente['nombre']."<br>";
+	echo $cliente['genero']."<br>";
+	echo $cliente['imagen']."<br>";
+	echo $cliente['popularidad']."<br>";
+	echo $cliente['cantidad']."<br>";
+?>
