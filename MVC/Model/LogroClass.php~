@@ -1,0 +1,22 @@
+<?php
+
+class LogroClass{
+	//Atributos
+	public $clave;
+	public $detalles;
+	public $puntos_otorgados;
+	public $cliente_premiado;
+	public $nom_juego;
+	public $fecha;
+	
+	function __construct($cl, $de, $pu, $cp, $no, $fe)
+	{
+		$this->clave = $cl;
+		$this->detalles = $de;
+		$this->puntos_otorgados = $pu;
+		$this->cliente_premiado = $cp;
+		$this->nom_juego = $no;
+		$this->fecha = $fe;
+	}
+}
+?>

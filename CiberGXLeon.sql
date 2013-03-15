@@ -3,11 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 01, 2013 at 02:14 AM
+-- Generation Time: Mar 13, 2013 at 10:43 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO"; 
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `clientes` (
   `nick` varchar(20) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL,
-  `password` varchar(20) DEFAULT NULL,
-  `avatar` varchar(50) DEFAULT NULL,
-  `puntos` int(11) DEFAULT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `avatar` varchar(50) DEFAULT 'imgdefaul.jpg',
+  `puntos` int(11) NOT NULL DEFAULT '10',
   `credito` int(11) DEFAULT '10',
   PRIMARY KEY (`nick`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -42,36 +42,14 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 --
 
 INSERT INTO `clientes` (`nick`, `nombre`, `email`, `password`, `avatar`, `puntos`, `credito`) VALUES
+('Donal', 'Lucas', '1f23s', 'aroba@gmail.com', 'imgdefault.jpg', 10, 10),
 ('gaby', 'Gabriela', 'Gaby123@hotmail.com', 'gabiii', NULL, 30, 20),
 ('Jon', 'Yonatan ', 'yoni56@gmail.com', 'jona', NULL, 10, 10),
 ('luiz', 'Luis Alverto', 'luis@hotmail.com', 'luilly', NULL, 0, 10),
+('Mary43', 'Maria', 'mari_posa@hotmail.com', 'mariposa02', NULL, 0, 10),
 ('Max', 'Marcos', 'marcos.45@hotmail.com', 'max45', NULL, 10, 50),
-('OsvaldoO', 'Osvaldo Leon', 'osvaldo.lp.5889@gmail.com', '54321', NULL, 1000, 1000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `detalleseventos`
---
-
-CREATE TABLE IF NOT EXISTS `detalleseventos` (
-  `numero` int(11) NOT NULL AUTO_INCREMENT,
-  `detalles` varchar(200) DEFAULT NULL,
-  `tipo` varchar(15) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
-  `nom_juego` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`numero`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `detalleseventos`
---
-
-INSERT INTO `detalleseventos` (`numero`, `detalles`, `tipo`, `fecha`, `nom_juego`) VALUES
-(1, 'Máximo 8 equipos, Eliminación Directa', 'Torneo', '2013-02-26', 'Fifa_13'),
-(2, 'Consigue pasar el juego en menos tiempo que tus competidores', 'Desafio', '2013-02-19', 'Halo_2'),
-(4, '3 rondas por pelea', 'Torneo', '2013-02-21', 'Mortal_Kombat_8'),
-(5, 'El Jugador mas Rápido dando 5 vueltas en White Mountain Gana', 'Competencia', '2013-03-21', 'Burnout_4');
+('OsvaldoO', 'Osvaldo Leon', 'osvaldo.lp.5889@gmail.com', '54321', NULL, 1000, 1000),
+('Piter', 'Pedro', 'piter_pan@hotmail.com', 'pan78', NULL, 0, 10);
 
 -- --------------------------------------------------------
 
@@ -133,20 +111,25 @@ INSERT INTO `empleados` (`codigo`, `nombre`, `rfc`, `telefono`, `direccion`, `ti
 --
 
 CREATE TABLE IF NOT EXISTS `eventos` (
-  `num_evento` int(11) NOT NULL,
-  `nick_ganador` varchar(20) NOT NULL,
-  `participantes` int(11) DEFAULT NULL,
-  UNIQUE KEY `num_evento` (`num_evento`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `numero` int(11) NOT NULL AUTO_INCREMENT,
+  `detalles` varchar(200) DEFAULT NULL,
+  `tipo` varchar(15) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `nom_juego` varchar(40) DEFAULT NULL,
+  `nick_ganador` varchar(20) DEFAULT NULL,
+  `participantes` int(10) DEFAULT '0',
+  PRIMARY KEY (`numero`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `eventos`
 --
 
-INSERT INTO `eventos` (`num_evento`, `nick_ganador`, `participantes`) VALUES
-(1, 'OsvaldoO', 8),
-(2, 'Jon', 13),
-(4, 'Max', 12);
+INSERT INTO `eventos` (`numero`, `detalles`, `tipo`, `fecha`, `nom_juego`, `nick_ganador`, `participantes`) VALUES
+(1, 'Máximo 8 equipos, Eliminación Directa', 'Torneo', '2013-02-26', 'Fifa_13', 'Jon', 0),
+(2, 'Consigue pasar el juego en menos tiempo que tus competidores', 'Desafio', '2013-02-19', 'Halo_2', 'Mary43', 0),
+(4, '3 rondas por pelea', 'Torneo', '2013-02-21', 'Mortal_Kombat_8', 'Max', 0),
+(5, 'El Jugador mas Rápido dando 5 vueltas en White Mountain Gana', 'Competencia', '2013-03-21', 'Burnout_4', 'OsvaldoO', 0);
 
 -- --------------------------------------------------------
 
@@ -213,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `rentas` (
   `cod_empleado` int(11) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   PRIMARY KEY (`clave`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `rentas`
