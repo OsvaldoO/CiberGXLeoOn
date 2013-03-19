@@ -1,4 +1,0 @@
-<?php
-	foreach($empleado as $llave => $valor) 
-	echo $empleado[$llave]['nombre']."<br>";
-?>
