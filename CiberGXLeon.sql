@@ -47,7 +47,7 @@ INSERT INTO `clientes` (`nick`, `nombre`, `email`, `password`, `avatar`, `puntos
 ('luiz', 'Luis Alverto', 'luis@hotmail.com', 'luilly', 'imgdefault.jpg', 10, 10),
 ('Mary43', 'Maria', 'mari_posa@hotmail.com', 'mariposa02', 'imgdefault.jpg', 10, 10),
 ('Max', 'Marcos', 'marcos.45@hotmail.com', 'max45', 'imgdefault.jpg', 10, 50),
-('OsvaldoO', 'Osvaldo Leon', 'osvaldo.lp.5889@gmail.com', '54321', 'http://www.fastcocreate.com/multisite_files/cocreate/imagecache/slideshow-large/slideshow/2012/10/1681797-slide-slide-3-halo-4-behind-the-live-action.jpg', 1040, 1010),
+('OsvaldoO', 'Osvaldo Leon', 'osvaldo.lp.5889@gmail.com', '54321', 'http://www.fastcocreate.com/multisite_files/cocreate/imagecache/slideshow-large/slideshow/2012/10/168197-slide-slide-3-halo-4-behind-the-live-action.jpg', 1040, 1010),
 ('Piter', 'Pedro', 'piter_pan@hotmail.com', 'pan78', 'imgdefault.jpg', 10, 10);
 
 -- --------------------------------------------------------
