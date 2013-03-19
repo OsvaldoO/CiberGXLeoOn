@@ -1,0 +1,7 @@
+<?php 
+//Guardar Informacion Para la conexion	
+$host = 'localhost';
+$user = 'leon';
+$pass = 'leon';
+$bd   = 'CiberGXLeon'; 
+?>
