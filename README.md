@@ -3,6 +3,15 @@ ___
 >####Osvaldo León Pérez 
 *osvaldo.lp.5889@gmail.com*
 [http://www.facebook.com/OsvaldOoLeOon](http://www.facebook.com/OsvaldOoLeOon)
+
+**Acceso al Servidor**
+ http://alanturing.cucei.udg.mx/cc409/rentajuegos/MVC/
+ 
+ *CLIENTES*
+ http://alanturing.cucei.udg.mx/cc409/rentajuegos/MVC/?clase=clientes
+ accion = consultar(nick), registrar(nick,nombre,email,password).
+ 
+ 
 ___
 **Descripción del Proyecto**
 
