@@ -10,5 +10,5 @@
 		echo 'Credito: '.$cliente->credito." $<br>";
 		echo 'Avatar: '.$cliente->avatar."<br>";
 	}
-	else echo 'No se guado valor en la variable clientes';
+	else echo 'No se guado valor en la variable Clientes';
 ?>

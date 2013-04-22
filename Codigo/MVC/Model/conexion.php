@@ -50,6 +50,7 @@ class DataB
 		}
 		if(is_object($resultado))
 		{
+
 			if($resultado->num_rows > 0 )
 			{
 				while ($fila = $resultado->fetch_assoc()) 

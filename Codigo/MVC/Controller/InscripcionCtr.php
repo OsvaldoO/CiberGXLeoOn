@@ -12,7 +12,6 @@ include_once('Model/InscripcionBss.php');
 //La clase controlador
 
 class InscripcionCtr{
-
 	public $modelo;
 
 	//Cuando se crea el controlador crea el modelo de usuario
@@ -30,13 +29,18 @@ class InscripcionCtr{
 		else {
 			switch($_REQUEST['accion']) {
 					case 'inscribir':
-					if( isset($_REQUEST['num_evento']) and isset($_REQUEST['nick_cliente']))
-					{
-						date_default_timezone_set('UTC');
-						$inscripcion = $this->modelo->inscribir( $_REQUEST['num_evento'], $_REQUEST['nick_cliente'], date("Y-m-d") );
-						include('View/inscritoView.php');
+					if(!isset($_SESSION['user']) )
+						echo'No has iniciado Sesion';
+					else {
+						if( isset($_REQUEST['num_evento']) and isset($_REQUEST['nick_cliente']))
+						{
+							date_default_timezone_set('UTC');
+							$inscripcion = $this->modelo->inscribir( $_REQUEST['num_evento'], $_REQUEST['nick_cliente'], date("Y-m-d") );
+							include('View/inscritoView.php');
+						}
+						else { include('View/ErrorView.php'); }
 					}
-					else { include('View/ErrorView.php'); }
+					
 					break;
 					case 'consultar':
 					if( isset($_REQUEST['num_evento']))
@@ -50,17 +54,24 @@ class InscripcionCtr{
 						include('View/ErrorView.php');					
 					}
 					case 'verMisInscripciones':
-					if( isset($_REQUEST['nick_cliente']))
-					{
-						$inscripciones = $this->modelo->verMisInscripciones($_REQUEST['nick_cliente']);
-						if($inscripciones)
-							include('View/miInscripcionView.php');
-						else echo 'No Inscrito a Ningun evento';
-					}
+					if(!isset($_SESSION['user']) )
+						echo'No has iniciado Sesion';
 					else {
-						include('View/ErrorView.php');					
+						if( isset($_REQUEST['nick_cliente']))
+						{
+							$inscripciones = $this->modelo->verMisInscripciones($_REQUEST['nick_cliente']);
+							if($inscripciones)
+							include('View/miInscripcionView.php');
+							else echo 'No Inscrito a Ningun evento';
+						}
+						else {
+							include('View/ErrorView.php');					
+						}
 					}
 					case 'desinscribir':
+					if(!isset($_SESSION['user']) )
+						echo'No has iniciado Sesion';
+					else {
 					if( isset($_REQUEST['num_evento']) and isset($_REQUEST['nick_cliente']))
 					{
 						$cliente = $this->modelo->desinscribir($_REQUEST['num_evento'],$_REQUEST['nick_cliente']);
@@ -68,6 +79,7 @@ class InscripcionCtr{
 					}
 					else {
 						include('View/ErrorView.php');					
+					}
 					}
 					break;
 					default: echo 'Accion no Implementada';

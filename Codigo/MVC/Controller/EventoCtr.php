@@ -14,7 +14,6 @@ include('Model/EventoBss.php');
 class EventoCtr{
 
 	public $modelo;
-
 	//Cuando se crea el controlador crea el modelo de usuario
 	function __construct(){
 		$this -> modelo = new EventoBss();
@@ -31,12 +30,16 @@ class EventoCtr{
 		else {
 			switch($_REQUEST['accion']) {
 					case 'publicar':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes mos privilegios para Publicar Eventos';
+					else {
 					if( isset($_REQUEST['detalles']) and isset($_REQUEST['nom_juego']) and isset($_REQUEST['tipo']) and isset($_REQUEST['fecha']))
 					{
 						$evento = $this->modelo->publicar( $_REQUEST['detalles'], $_REQUEST['nom_juego'],$_REQUEST['tipo'],$_REQUEST['fecha'] );
 						include('View/eventoView.php');
 					}
 					else { include('View/DatosIncorrectosView.php'); }
+					}
 					break;
 					case 'consultar':
 					if( isset($_REQUEST['numero']))
@@ -49,6 +52,9 @@ class EventoCtr{
 					}
 					break;
 					case 'premiar':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes mos privilegios para realizar esta accion';
+					else {
 					if( isset($_REQUEST['numero']) and isset($_REQUEST['ganador']))
 					{
 						$evento = $this->modelo->premiar($_REQUEST['numero'], $_REQUEST['ganador']);
@@ -59,8 +65,12 @@ class EventoCtr{
 					else {
 						include('View/DatosIncorrectosView.php');					
 					}
+				}
 					break;
 					case 'cancelar':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes mos privilegios para cancelar Eventos';
+					else {
 					if( isset($_REQUEST['numero']))
 					{
 						$evento = $this->modelo->cancelar($_REQUEST['numero']);
@@ -71,8 +81,12 @@ class EventoCtr{
 					else {
 						include('View/DatosIncorrectosView.php');					
 					}
+					}
 					break;
 					case 'verMisEventosGanados':
+					if(!isset($_SESSION['user']))
+						echo'No has iniciado sesion';
+					else {
 					if( isset($_REQUEST['nick']))
 					{
 						$eventos = $this->modelo->verMisEventosGanados($_REQUEST['nick']);
@@ -83,6 +97,7 @@ class EventoCtr{
 					else {
 						include('View/DatosIncorrectosView.php');					
 					}
+				}
 					break;
 					default: echo 'Accion no Implementada';			
 				}		

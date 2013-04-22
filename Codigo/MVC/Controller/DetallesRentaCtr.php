@@ -14,7 +14,6 @@ include_once('Model/DetallesRentaBss.php');
 class DetallesRentaCtr{
 
 	public $modelo;
-
 	//Cuando se crea el controlador crea el modelo de usuario
 	function __construct(){
 		$this -> modelo = new DetallesRentaBss();
@@ -31,12 +30,16 @@ class DetallesRentaCtr{
 			switch($_REQUEST['accion']) 
 			{
 					case 'generar':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes mos privilegios para realizar esta accion';
+					else {
 					if( isset($_REQUEST['clave_renta']) and isset($_REQUEST['nom_juego']) and isset($_REQUEST['horas']))
 					{
 						$dRenta = $this->modelo->generar( $_REQUEST['clave_renta'], $_REQUEST['nom_juego'], $_REQUEST['horas']);
 						include('View/detallesRentaView.php');
 					}
 					else { include('View/DatosIncorrectosView.php'); }
+					}
 					break;
 					default: echo 'Accion no Implementada';
 								

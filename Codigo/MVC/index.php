@@ -1,9 +1,12 @@
-<?php
-if(!isset($_REQUEST['clase']))
-	echo 'Es necesario Ingresar una clase';
-else 
-{
-	switch ($_REQUEST['clase']) 
+<?php session_start(); ?>
+<html>
+<head>
+</head>
+<body>
+	<?php
+	if(isset($_REQUEST['evento']))
+	{
+		switch ($_REQUEST['evento']) 
 	{
 		case 'clientes':
 			include('Controller/ClienteCtr.php');
@@ -40,10 +43,25 @@ else
 		default: echo 'El Tipo espesificado no esta Implementado';
 			$error = TRUE;
 			break;
-	}
-	if(!isset($error))
+		}
+		if(!isset($error))
+			$controlador -> ejecutar();
+	} 
+	else if(isset($_REQUEST['accion']) ) 
+	{
+		include('Controller/StdCtr.php');
+		$controlador = new StdCtr();
 		$controlador -> ejecutar();
-}
-
-
+	}
+	if(!isset($_SESSION['user']))
+	{
+		include('View/LoginView.php');
+	}
+	else { 
+		include('View/LogeadoView.php');
+	}
+	include('View/clasesView.php');
 ?>
+	</body>
+	<footer></footer>
+</html>

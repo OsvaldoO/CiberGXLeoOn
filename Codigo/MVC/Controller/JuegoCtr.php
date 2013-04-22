@@ -13,7 +13,6 @@ include_once('Model/JuegoBss.php');
 class JuegoCtr{
 
 	public $modelo;
-
 	function __construct(){
 		$this -> modelo = new JuegoBss();
 	}
@@ -28,38 +27,46 @@ class JuegoCtr{
 		else {
 			switch($_REQUEST['accion']) {
 					case 'agregar':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes mos privilegios para agregar Juegos';
+					else {
 					if( isset($_REQUEST['nombre']) and isset($_REQUEST['genero']) and isset($_REQUEST['cantidad']))
 					{
 						$juego = $this->modelo->agregar( $_REQUEST['nombre'], $_REQUEST['genero'], $_REQUEST['cantidad'] );
 						if(is_object($juego))
 							include('View/juegoView.php');
 						else 
-							include('View/juegoErrorView.php');	
+						include('View/DatosIncorrectosView.php');					
 					}
 					else { include('View/DatosIncorrectosView.php'); }
+				}
 					break;
 					case 'consultar':
 					if( isset($_REQUEST['nombre']))
 					{
 						$juego = $this->modelo->consultar($_REQUEST['nombre']);
 						if(is_object($juego))
-							include('View/juegoView.php');
-						else {
-						include('View/juegoErrorView.php');	
-						}				
+							include('View/juegoView.php');		
 					}
+						else {
+						include('View/DatosIncorrectosView.php');					
+						}		
 					break;
 					case 'descartar':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes mos privilegios para realizar esta accion';
+					else {
 					if( isset($_REQUEST['nombre']))
 					{
 						$juego = $this->modelo->descartar($_REQUEST['nombre']);
 						if($juego)
 							//include('View/juegoView.php');
 							echo 'Juego Borrado';
-						else {
-						include('View/DatosIncorrectosView.php');	
-						}				
 					}
+					else {
+						include('View/DatosIncorrectosView.php');	
+						}		
+				}
 					break;
 					default: echo 'Accion no Implementada';
 								

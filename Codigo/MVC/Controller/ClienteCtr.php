@@ -12,7 +12,6 @@ include_once('Model/ClienteBss.php');
 //La clase controlador
 
 class ClienteCtr{
-
 	public $modelo;
 
 	//Cuando se crea el controlador crea el modelo de usuario
@@ -31,14 +30,21 @@ class ClienteCtr{
 		else {
 			switch($_REQUEST['accion']) {
 					case 'registrar':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes os privilegios para Registrar Clientes';
+					else {
 					if( isset($_REQUEST['nombre']) and isset($_REQUEST['nick']) and isset($_REQUEST['password']) and isset($_REQUEST['email']))
 					{
 						$cliente = $this->modelo->registrar( $_REQUEST['nick'], $_REQUEST['nombre'], $_REQUEST['email'],$_REQUEST['password'] );
 						include('View/clienteView.php');
 					}
 					else { include('View/DatosIncorrectosView.php'); }
+					}
 					break;
 					case 'consultar':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes los privilegios Consultar los Clientes';
+					else {
 					if( isset($_REQUEST['nick']))
 					{
 						$cliente = $this->modelo->consultar($_REQUEST['nick']);
@@ -47,7 +53,11 @@ class ClienteCtr{
 					else {
 						include('View/DatosIncorrectosView.php');					
 					}
+					}
 					case 'agregarCredito':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes mos privilegios para realizar esta accion';
+					else {
 					if( isset($_REQUEST['nick']) and isset($_REQUEST['credito']))
 					{
 						$credito = $this->modelo->agregarCredito($_REQUEST['nick'],$_REQUEST['credito']);
@@ -56,8 +66,12 @@ class ClienteCtr{
 					else {
 						include('View/DatosIncorrectosView.php');					
 					}
+					}
 					break;
 					case 'agregarPuntos':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes mos privilegios para realizar esta accion';
+					else {
 					if( isset($_REQUEST['nick']) and isset($_REQUEST['puntos']))
 					{
 						$puntos = $this->modelo->agregarPuntos($_REQUEST['nick'],$_REQUEST['puntos']);
@@ -66,8 +80,12 @@ class ClienteCtr{
 					else {
 						include('View/DatosIncorrectosView.php');					
 					}
+				}
 					break;
 					case 'cambiarAvatar':
+					if(!isset($_SESSION['user']))
+						echo'No has iniciado seccion';
+					else {
 					if( isset($_REQUEST['nick']) and isset($_REQUEST['avatar']) )
 					{
 						$avatar = $this->modelo->cambiarAvatar($_REQUEST['nick'],$_REQUEST['avatar']);
@@ -79,6 +97,7 @@ class ClienteCtr{
 					else {
 						include('View/DatosIncorrectosView.php');					
 					}
+				}
 					break;
 					default: echo 'Accion no Implementada';				
 				}		

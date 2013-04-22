@@ -7,35 +7,39 @@
  */
 
 //Este controlador require tener acceso al modelo
-include_once('Model/DetallesDeRentaBss.php');
+include_once('Model/LogroBss.php');
 
 //La clase controlador
 
-class DetallesDeRentaCtr{
-
+class LogroCtr{
 	public $modelo;
 
 	//Cuando se crea el controlador crea el modelo de usuario
 	function __construct(){
-		$this -> modelo = new DetallesDeRentaBss();
+		$this -> modelo = new LogroBss();
 	}
 
 	function ejecutar(){
 		//Si no tengo parametros, listo los usuarios
-	if( !isset($_REQUEST['accion']) ){
+		if( !isset($_REQUEST['accion']) ){
 			//Obtengo los datos que se van a listar
-			echo 'Ingrese una accion, DetallesDeRenta no esta implementado para listar (Revisar Diagrama de Clases)';
+			$logros = $this->modelo->listar();
 			//Muestro los datos
-			}
+			include('View/logroListaView.php');
+		}
 		else {
 			switch($_REQUEST['accion']) {
 					case 'otorgar':
+					if(!isset($_SESSION['user']) || $_SESSION['priv'] > 1)
+						echo'No tienes mos privilegios para realizar esta accion';
+					else {
 					if( isset($_REQUEST['detalles']) and isset($_REQUEST['puntos_otorgados']) and isset($_REQUEST['nom_juego']) and isset($_REQUEST['cliente_premiado']) and isset($_REQUEST['fecha']) )
 					{
 						$logro = $this->modelo->otorgar( $_REQUEST['detalles'], $_REQUEST['puntos_otorgados'], $_REQUEST['nom_juego'], $_REQUEST['cliente_premiado'],$_REQUEST['fecha']  );
 						include('View/logroView.php');
 					}
 					else { include('View/DatosIncorrectosView.php'); }
+				}
 					break;
 					case 'consultar':
 					if( isset($_REQUEST['clave']))
@@ -48,6 +52,9 @@ class DetallesDeRentaCtr{
 					}
 					break;
 					case 'verLogrosCliente':
+					if(!isset($_SESSION['user']))
+						echo'No has iniciado session';
+					else {
 					if( isset($_REQUEST['cliente_premiado']))
 					{
 						$logros = $this->modelo->verLogrosCliente($_REQUEST['cliente_premiado']);
@@ -58,6 +65,7 @@ class DetallesDeRentaCtr{
 					else {
 						include('View/DatosIncorrectosView.php');					
 					}
+				}
 					break;
 					default: echo 'Accion no Implementada';
 								
