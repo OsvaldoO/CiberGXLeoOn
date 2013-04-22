@@ -1,8 +1,9 @@
 ##Negocio de Videojuegos
 ___
 >####Osvaldo León Pérez 
-*osvaldo.lp.5889@gmail.com*
-[http://www.facebook.com/OsvaldOoLeOon](http://www.facebook.com/OsvaldOoLeOon)
+>*osvaldo.lp.5889@gmail.com*
+
+>[http://www.facebook.com/OsvaldOoLeOon](http://www.facebook.com/OsvaldOoLeOon)
 
 *Acceso al Servidor*
  [http://alanturing.cucei.udg.mx/cc409/rentajuegos] (http://alanturing.cucei.udg.mx/cc409/rentajuegos/MVC/)
