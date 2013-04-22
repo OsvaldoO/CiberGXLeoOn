@@ -6,11 +6,33 @@ ___
 
 *Acceso al Servidor*
  [http://alanturing.cucei.udg.mx/cc409/rentajuegos] (http://alanturing.cucei.udg.mx/cc409/rentajuegos/MVC/)
+ ___
+**Cuentas**
+
+ **Administrador**
+  *Usuario: root*
+  *contraseña: ciberGx*
  
- *CLIENTES*
- *http://alanturing.cucei.udg.mx/cc409/rentajuegos/MVC/?clase=clientes*
+ **Empleado**
+  *usuario: 1*
+  *contraseña U764*
  
- *accion = consultar(nick), registrar(nick,nombre,email,password)*
+ **Cliente**
+  *usuario: Max*
+  *contraseña: max45*
+  ___
+ 
+ **Privilegios**
+ 
+ **Usuarios:**  *Consultar: logros y eventos* 
+ 
+ **Clientes:**  *Usuarios + Consultar juegos, cambiar Avatar, ver Eventos ganados ...*
+ 
+ **Empleados:**  *Usuarios + Clientes + Agregar y descartar juegos, publicar y cancelar eventos, otorgar logros ...*
+ 
+ **Administrador:** *Usuarios + Clientes + Empleados + Administrar empleados, ver rentas ...*
+
+
  
 ___
 **Descripción del Proyecto**
@@ -39,7 +61,5 @@ ___
 
 9. Dan de **Alta y Baja Videojuegos** en el sistema
 ___
-**RENTAS**
 
-9. Se Generara un sistema que permita **Administrar las rentas de las consolas**, con el fin de facilitar el trabajo a los empleados de estar **llevando acabo el registro** y **midiendo los tiempos** de los clientes, el sistema automaticamente **indicara la hora de finalizacion** para cada consola que este siendo rentada, asi como **el total a cobrar** por cada renta.
 
