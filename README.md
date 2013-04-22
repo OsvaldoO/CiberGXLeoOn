@@ -32,8 +32,7 @@ ___
  
  **Administrador:** *Usuarios + Clientes + Empleados + Administrar empleados, ver rentas ...*
 
-
- 
+**NOTA: Cuando intente acceder a una accion con un usuario sin permisos se avisara mediante un mensaje. Al igual, un mensaje de "Datos incorrectos" indica que si se otorgo el permiso. la idea es solo probar sessiones**
 ___
 **Descripción del Proyecto**
 
