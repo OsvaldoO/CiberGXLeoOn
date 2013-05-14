@@ -1,0 +1,26 @@
+<h2>Juegos</h2>
+
+<?php if(isset($this->juegos) && count($this->juegos)) : ?>
+    <?php for($i = 0; $i < count($this->juegos); $i++): ?>
+    <section>
+    	<ul>
+	    	<strong><?php echo $this->juegos[$i]['nombre']; ?></strong>
+	   	<li><?php echo $this->juegos[$i]['genero']; ?></li>
+	    	<li><?php echo $this->juegos[$i]['cantidad']; ?></li>
+		  	<li><?php echo $this->juegos[$i]['popularidad']; ?></li>
+		  	<li><?php echo $this->juegos[$i]['imagen']; ?></li>
+	  	</ul>
+	  	<?php if(Session::accesoViewEstricto(array('empleado'))): ?>
+			<a href="<?php echo BASE_URL . 'juegos/editar/' . $this->juegos[$i]['nombre']; ?>">Editar</a>
+    		<a href="<?php echo BASE_URL . 'juegos/eliminar/' . $this->juegos[$i]['nombre']; ?>">Eliminar</a>
+    	<?php endif ?>
+    </section> <br />  
+    <?php endfor;?>
+   
+<?php else: ?>
+<p><strong>No hay Juegos!</strong></p>
+<?php endif; ?>
+
+<?php if(Session::accesoViewEstricto(array('admin'))): ?>
+<p><a href="<?php BASE_URL; ?>juegos/nuevo">Agregar Juegos</a></p>
+<?php endif ?>

@@ -1,0 +1,13 @@
+<form id="frmEventosNuevo" method="post" action="<?php echo BASE_URL; ?>eventos/nuevo">
+    <input type="hidden" name="guardar" value="1" />
+    <p>Juego:<br />
+    <input type="texto" name="nom_juego" value="<?php if(isset($this->datos['nom_juego'])) echo $this->datos['nom_juego']; ?>" /></p>
+    
+    <p>Tipo:<br />
+    <input type="texto" name="tipo" value="<?php if(isset($this->datos['tipo'])) echo $this->datos['tipo']; ?>" /></p>
+    
+    <p>Descripcion:<br />
+    <textarea name="detalles"><?php if(isset($this->datos['detalles'])) echo $this->datos['detalles']; ?></textarea></p>
+    
+    <p><input type="submit" class="button" value="Guardar" /></p>
+</form>

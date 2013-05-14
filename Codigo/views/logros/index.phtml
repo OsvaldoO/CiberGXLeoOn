@@ -1,0 +1,27 @@
+<h2>Ultimos Logros</h2>
+
+<?php if(isset($this->logros) && count($this->logros)) : ?>
+    <?php for($i = 0; $i < count($this->logros); $i++): ?>
+    <section>
+    <strong><?php echo $this->logros[$i]['clave']; ?></strong>
+    <ul>
+	    <li><?php echo $this->logros[$i]['detalles']; ?></li>
+	    <li><?php echo $this->logros[$i]['puntos_otorgados']; ?></li>
+		 <li><?php echo $this->logros[$i]['nom_juego']; ?></li>
+		<li><?php echo $this->logros[$i]['cliente_premiado']; ?></li>
+	    <li><i><<?php echo $this->logros[$i]['fecha']; ?></i></li>
+    </ul>
+    <?php if(Session::accesoViewEstricto(array('empleado'))): ?>
+			<a href="<?php echo BASE_URL . 'logros/editar/' . $this->logros[$i]['clave']; ?>">Editar</a>
+    		<a href="<?php echo BASE_URL . 'logros/eliminar/' . $this->logros[$i]['clave']; ?>">Eliminar</a>
+    <?php endif ?>
+    </section> <br />
+    <?php endfor;?> 
+<?php else: ?>
+<p><strong>No hay Logros!</strong></p>
+<?php endif; ?>
+
+<?php if(Session::accesoViewEstricto(array('emoleado'))): ?>
+<p><a href="<?php BASE_URL; ?>logros/nuevo">Agregar Logros</a></p>
+
+<?php endif ?>

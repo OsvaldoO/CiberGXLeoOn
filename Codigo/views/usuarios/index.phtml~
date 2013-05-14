@@ -1,0 +1,39 @@
+<h2>Usuarios Registrados</h2>
+
+<?php if(isset($this->usuarios) && count($this->usuarios)) : ?>
+		<section>
+		<table class="muestra" style="border:solid black">	
+			<tr>
+				<th>Nick</th>
+				<td>Nombre</td>
+				<td>Email</td>
+				<td>Rol</td>
+				<td>Puntos</td>
+				<td>Credito</td>
+			</tr>
+    <?php for($i = 0; $i < count($this->usuarios); $i++): ?>
+			<tr>
+				<th><strong><?php echo $this->usuarios[$i]['nick']; ?></strong></th>
+				<td><?php echo $this->usuarios[$i]['nombre']; ?></td>
+				<td><?php echo $this->usuarios[$i]['email']; ?></td>
+				<td><?php echo $this->usuarios[$i]['rol']; ?></td>
+				<td><?php echo $this->usuarios[$i]['puntos']; ?></td>
+				<td><?php echo $this->usuarios[$i]['credito']; ?></td>
+				<?php if(Session::accesoViewEstricto(array('admin'))): ?> 
+					<td><a href="<?php echo BASE_URL . 'usuarios/editar/' . $this->usuarios[$i]['nick']; ?>">Editar</a></td>
+	    			<td><a href="<?php echo BASE_URL . 'usuarios/eliminar/' . $this->usuarios[$i]['nick']; ?>">Eliminar</a></td>
+    			<?php endif ?>
+    		</tr>  
+    <?php endfor;?>
+    </table>  
+    </section>
+<?php else: ?>
+
+<p><strong>No hay Usuarios!</strong></p>
+
+<?php endif; ?>
+
+<?php if(Session::accesoViewEstricto(array('usuario'))): ?>
+<p><a href="<?php BASE_URL; ?>usuarios/registrar">Registrar usuario</a></p>
+
+<?php endif ?>

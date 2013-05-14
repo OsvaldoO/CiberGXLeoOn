@@ -1,0 +1,28 @@
+<h2>Ultimos Eventos</h2>
+
+<?php if(isset($this->eventos) && count($this->eventos)) : ?>
+    <?php for($i = 0; $i < count($this->eventos); $i++): ?>
+    <section>
+  	 <ul>
+	  	 <li><strong><?php echo $this->eventos[$i]['numero']; ?></strong></li>
+	    <li><?php echo $this->eventos[$i]['detalles']; ?><</li>
+	    <li><?php echo $this->eventos[$i]['nom_juego']; ?></li>
+	    <li><i><?php echo $this->eventos[$i]['fecha']; ?></i></li>
+    </ul>
+    <?php if(Session::accesoViewEstricto(array('empleado'))): ?>
+			<a href="<?php echo BASE_URL . 'eventos/editar/' . $this->eventos[$i]['numero']; ?>">Editar</a>
+    		<a href="<?php echo BASE_URL . 'eventos/eliminar/' . $this->eventos[$i]['numero']; ?>">Eliminar</a>
+    <?php endif ?>
+    </section><br />
+    <?php endfor;?>
+    
+<?php else: ?>
+
+<p><strong>No hay Eventos!</strong></p>
+
+<?php endif; ?>
+
+<?php if(Session::accesoViewEstricto(array('usuario'))): ?>
+<p><a href="<?php BASE_URL; ?>eventos/nuevo">Agregar Eventos</a></p>
+
+<?php endif ?>

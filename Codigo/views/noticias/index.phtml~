@@ -1,0 +1,23 @@
+<h2>Ultimas Noticias</h2>
+
+<?php if(isset($this->noticias) && count($this->noticias)) : ?>
+    <?php for($i = 0; $i < count($this->noticias); $i++): ?>
+    <section>
+    <strong><?php echo $this->noticias[$i]['titulo']; ?></strong>
+    <p><?php echo $this->noticias[$i]['contenido']; ?></p>
+    <i><?php echo $this->noticias[$i]['fecha']; ?></i>
+			<a href="<?php echo BASE_URL . 'noticias/editar/' . $this->noticias[$i]['id']; ?>">Editar</a>
+    	<a href="<?php echo BASE_URL . 'noticias/eliminar/' . $this->noticias[$i]['id']; ?>">Eliminar</a>
+    </section> <br /> 
+    <?php endfor;?>
+    
+<?php else: ?>
+
+<p><strong>No hay Noticias!</strong></p>
+
+<?php endif; ?>
+
+<?php if(Session::accesoViewEstricto(array('admin'))): ?>
+<p><a href="<?php BASE_URL; ?>noticias/nuevo">Agregar Noticias</a></p>
+
+<?php endif ?>

@@ -1,0 +1,14 @@
+<?php
+
+class Model
+{
+    protected $_conexion;
+    
+    public function __construct() {
+        $this->_db = new Database();
+        if(!$this->_db->conecta())
+						die('No se ha podido conectar a la Base de Datos');
+    }
+}
+
+?>

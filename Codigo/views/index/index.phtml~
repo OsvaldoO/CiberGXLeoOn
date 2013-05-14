@@ -1,0 +1,3 @@
+<h2>Bienvenidos a CiberGXLeon.. </h2>
+<?php if(isset($_SESSION['nick'])) echo $_SESSION['nick']; ?>
+

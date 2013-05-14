@@ -1,0 +1,13 @@
+<form id="frmNoticias" method="post" action="<?php echo BASE_URL; ?>noticias/nuevo">
+    <input type="hidden" name="guardar" value="1" />
+    <p>Titulo:<br />
+    <input type="texto" name="titulo" value="<?php if(isset($this->datos['titulo'])) echo $this->datos['titulo']; ?>" /></p>
+    
+    <p>Tipo:<br />
+    <input type="texto" name="tipo" value="<?php if(isset($this->datos['tipo'])) echo $this->datos['tipo']; ?>" /></p>
+    
+    <p>Contenido:<br />
+    <textarea name="contenido"><?php if(isset($this->datos['contenido'])) echo $this->datos['contenido']; ?></textarea></p>
+    
+    <p><input type="submit" class="button" value="Guardar" /></p>
+</form>
