@@ -11,12 +11,12 @@ ___
 **Cuentas**
 
  **Administrador**
-  *Usuario: root*
-  *contraseña: ciberGx*
+  *Usuario: OsvaldoO*
+  *contraseña: 54321*
  
  **Empleado**
-  *usuario: 1*
-  *contraseña U764*
+  *usuario: Jon*
+  *contraseña jona*
  
  **Cliente**
   *usuario: Max*
