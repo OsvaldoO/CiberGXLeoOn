@@ -6,60 +6,39 @@ ___
 >[http://www.facebook.com/OsvaldOoLeOon](http://www.facebook.com/OsvaldOoLeOon)
 
 *Acceso al Servidor*
- [http://alanturing.cucei.udg.mx/cc409/rentajuegos] (http://alanturing.cucei.udg.mx/cc409/rentajuegos/MVC/)
+ [http://alanturing.cucei.udg.mx/cc409/rentajuegos] (http://alanturing.cucei.udg.mx/cc409/rentajuegos/)
  ___
 **Cuentas**
 
  **Administrador**
-  *Usuario: root*
-  *contraseña: ciberGx*
+  *Usuario: OsvaldoO*
+  *contraseña: 54321*
  
- **Empleado**
-  *usuario: 1*
-  *contraseña U764*
- 
- **Cliente**
-  *usuario: Max*
-  *contraseña: max45*
+ **Usuario**
+  *usuario: carlos*
+  *contraseña: aaaaa*
   ___
  
  **Privilegios**
  
- **Usuarios:**  *Consultar: logros y eventos* 
- 
- **Clientes:**  *Usuarios + Consultar juegos, cambiar Avatar, ver Eventos ganados ...*
- 
- **Empleados:**  *Usuarios + Clientes + Agregar y descartar juegos, publicar y cancelar eventos, otorgar logros ...*
- 
- **Administrador:** *Usuarios + Clientes + Empleados + Administrar empleados, ver rentas ...*
-
-**NOTA: Cuando intente acceder a una accion con un usuario sin permisos se avisara mediante un mensaje. Al igual, un mensaje de "Datos incorrectos" indica que si se otorgo el permiso. la idea es solo probar sessiones**
 ___
-**Descripción del Proyecto**
 
-*En un Negocio de Video juegos se rentan consolas de video juego de manera local. Se lleva a cabo el registro de gran parte de sus estadísticas y actividades, con el fin de brindar un mejor servicio a sus clientes y llevar un control mas claro del negocio. El proposito del proyecto consiste en que el sistema muestre informacion del negocio, asi como fechas para eventos y actividades importantes, de igual manera llevara acabo el conteo de puntos, actividades y logros de los clientes. Flujo del sistema:*
-___
-**CLIENTES**
+**Administrador**
+Puede dar de alta eventos (La opcion aparece en la parte de abajo de Eventos),
+Agregar nuevos juegos (La opcion aparece en la parte de abajo de Juegos),
+Otorgar logros a los usuarios ( la opcion aparece al Ingresar a Mis Logros  )
 
-1. Los Clientes podran **Registrarse** desde el sistema, ingresando su Nick, Nombre y password ( tambien estara disponible el campo email y Avatar, los cuales no seran obligatorios). 
+____
 
-2. Los Clientes Podran **Ver su informacion de perfil** y tambien tendran la abilidad de poder *cambiar su Avatar* cuantas veces quieran. 
+**Usuario Registrado**
+Puede Registrarse inscribirse en los eventos (Aparece un link "inscribir" para cada evento )
+Puede Editar su perfil, ver sus logros y sus eventos a los que esta inscrito (En el meno de la derecha, baja la imagen de perfil).
+____
+**Usuario sin registro**
+Puede Registrarse
+Puede ver los Juegos, Eventos, Puntages e informacion del Sitio
 
-3. Podran **Registrarse en eventos** siempre y cuando cumplan con los requisitos 
 
-4. Pueden acceder al sistema y **Revisar Actividades, Eventos y Noticias** relacionadas al negocio. 
-
-5. Tambien tendran la habilidad de **Publicar propuestas** y **hacer preguntas** sobre el negocio
-___
-**EMPLEADOS** 
-
-6. Los Empleados seran capaces de **dar de alta Eventos** y de la misma manera **modificarlos**, aun despues de aberlos publicado ( ya sea *cambiar la fecha* o *cancelarlos*) 
-
-7. El Empleado **Publica los detalles y reglas para cada evento**, asi como los *puntos y premios que seran otorgados* 
-
-8. Los Empleados **Registraran los logros** de los usuarios si como los *detalles de los eventos* una vez finalizados
-
-9. Dan de **Alta y Baja Videojuegos** en el sistema
 ___
 
 
