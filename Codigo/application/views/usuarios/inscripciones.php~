@@ -16,6 +16,3 @@
 				 <?php else: ?>
 					<h4>No Estas Inscrito a Ningun Evento!</h4>
 					<?php endif; ?>
-<?php else: ?>
-	<h4>Error Has iniciado Seccion</h4>
-<?php endif; ?>				

@@ -40,7 +40,7 @@ class Juegos extends CI_Controller {
         else
         {
         //definimos las reglas de validación
-        $this->form_validation->set_rules('nombre','Nombre','min_lenght[3]|alpha_dash|required|max_lenght[200]');
+        $this->form_validation->set_rules('nombre','Nombre','min_lenght[3]|alpha_numeric|required|max_lenght[200]');
         if(!$this->my_validation->valid_url($this->input->post('imagen')) || !$this->my_validation->validaUrl($this->input->post('imagen')))
         {
        				$data['message'] = "Url de la imagen no valida";

@@ -17,5 +17,5 @@
 </div>
 <h6 class="session"><?php echo anchor('usuarios/cambiarPass',"Cambiar Password");?></h6>
 <?php else: ?>
-<h4>No has iniciado Seccion</h4>
+<h4>Accion no Valida, ya Estas Registrado</h4>
 <?php endif; ?>										

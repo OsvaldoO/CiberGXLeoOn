@@ -23,5 +23,5 @@
  </div> 
 </section>
 <?php else: ?>
-	<h4>Error Has iniciado Seccion</h4>
+	<h4>Error No tienes permisos Suficientes</h4>
 <?php endif; ?>				

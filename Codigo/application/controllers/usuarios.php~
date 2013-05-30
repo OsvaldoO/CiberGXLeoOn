@@ -112,7 +112,7 @@ class Usuarios extends CI_Controller {
 	       			'pass' => $this->input->post('pass'));
 	      		$this->usuario->cambiaPass($this->session->userdata('user'),$pass); 
 	      		$this->session->set_userdata($pass);
-	      		$this->vista('usuarios/exito',$data);
+	      		$this->vista('usuarios/index',$data);
 	      }
 	   }
 	}

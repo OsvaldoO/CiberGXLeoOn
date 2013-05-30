@@ -59,8 +59,7 @@ class Eventos extends CI_Controller {
 	      	$data['juegos'] = $this->get_db->getlista('juegos','nombre');
 	     		$this->vista('eventos/nuevo',$data);
 	      }
-	      else 
-	      {
+	      else {
 			 			$data = array(
 	       'detalles' => $this->input->post('detalles'),
 	       	'img' => "http://3.bp.blogspot.com/-yQpjEhqNqW0/UZsYH9P4G_I/AAAAAAAAM6g/-dg7lJARc-w/s640/timthumb.jpg",

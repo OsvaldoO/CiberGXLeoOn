@@ -26,7 +26,7 @@ $config['base_url']	= 'http://alanturing.cucei.udg.mx/cc409/rentajuegos/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

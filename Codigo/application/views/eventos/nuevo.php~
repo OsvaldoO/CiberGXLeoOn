@@ -1,7 +1,6 @@
 <?php if (isset($nick) && $rol=='admin'): ?>
 <div class="form">
 <form method="post" action="<?php APPPATH ?>nuevo">
-<h6 class="error" style="color:red;"><?php if(isset($message)) echo $message."\n"; echo validation_errors(); ?></h6>
     <p>Juego:<br />
      <select name="juego"> 
  				<?php  for( $i=0 ; $i < count($juegos); $i++){ ?> 

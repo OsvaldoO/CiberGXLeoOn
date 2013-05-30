@@ -1,5 +1,1 @@
-<h2><?php if(isset($mensaje)) echo $mensaje; ?></h2>
-
-<p>&nbsp;</p>
-
-<a href="<?php echo BASEPATH; ?>">Ir al Inicio</a> 
+<h2>Que pasooooo?? <?php if(isset($mensaje)) echo $mensaje; ?></h2>

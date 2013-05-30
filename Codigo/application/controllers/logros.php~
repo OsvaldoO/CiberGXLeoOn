@@ -21,7 +21,6 @@ class Logros extends CI_Controller {
 		public function listar($usuario = false) {
 		if(!$usuario) $usuario=$this->session->userdata('user');
 		$data['logros'] = $this->get_db->getRegistros('logros','usuario',$usuario);
-		$data['usr']=$usuario;
 		$this->vista('logros',$data);
 		}
 		

@@ -18,7 +18,7 @@
     <textarea rows="5" cols="50" name="detalle" ><?php if(isset($_POST['detalle'])) echo $_POST['detalle']; ?></textarea></p>
     
     <p>Puntos Otorgados:<br />
-    <input type="texto" name="puntos" value="<?php if(isset($_POST['puntos'])) echo $_POST['puntos']; ?>" /></p>
+    <input type="texto" name="puntos" value="<?php if(isset($_POST['puntos'])) echo $_SESSION['puntos']; ?>" /></p>
 
     <p><input type="submit" class="button" value="Otorgar" /></p>
 </form>

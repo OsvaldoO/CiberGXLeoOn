@@ -1,6 +1,6 @@
 <?php if (isset($nick)): ?>
 <link rel="stylesheet" href="<?php echo CSS_URL;?>table.css" type="text/css" />
-<h2> Logros <?php echo $usr ?> </h2>
+<h2> Mis Logros </h2>
 <?php if(isset($logros) && count($logros)) : ?>	
     <?php for($i = 0; $i < count($logros) && $i < 10 ; $i++): ?>
 
