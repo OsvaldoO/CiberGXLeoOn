@@ -5,18 +5,18 @@ ___
 
 >[http://www.facebook.com/OsvaldOoLeOon](http://www.facebook.com/OsvaldOoLeOon)
 
-*Acceso al Servidor*
+*Acceso al Servidor*  
  [http://alanturing.cucei.udg.mx/cc409/rentajuegos] (http://alanturing.cucei.udg.mx/cc409/rentajuegos/)
  ___
 **Cuentas**
 
- **Administrador**
-  *Usuario: OsvaldoO*
-  *contraseña: 54321*
+ **Administrador**  
+  *Usuario: OsvaldoO*  
+  *contraseña: 54321*  
  
- **Usuario**
-  *usuario: carlos*
-  *contraseña: aaaaa*
+ **Usuario**  
+  *usuario: carlos*  
+  *contraseña: aaaaa*  
   ___
  
  **Privilegios**
