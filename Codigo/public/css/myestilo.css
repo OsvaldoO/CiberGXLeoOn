@@ -1,0 +1,59 @@
+
+body{background-image: url('../img/bg_body.jpg');
+background-size:cover; }	
+nav{	position: relative; left: 5%;
+			background-image: url('../img/bg_nav.png');
+			opacity: 0.9;
+			background-size:cover; 
+			margin-bottom: 30px;;
+			}
+			nav ul{margin-top: 20px;
+			display: block;}
+
+			
+#cont{
+		overflow: hidden;
+		background-image: url('../img/bg_cont.png');
+		background-repeat: no-repeat;
+		background-size:cover; 
+		width: 70%;
+		height:1050px; }
+		
+		.centrado{margin-top: 100px;}
+		
+		#img_logo2{position: absolute;right: 5%;top: 5%; max-height: 200px}
+		#img_logo1{
+		position: relative; left: 10%;
+	opacity: 0.8;}
+	
+.nav-pills li a{
+	margin-left: 12px;
+	font-size: 22px;
+  color: black;
+ }
+ 
+ #seccion{
+ 	margin-top: 80px;
+background-color: black;
+border-radius: 15px;
+padding: 20px;
+color: white;
+text-align: center;}
+
+h2{text-align: center;}
+ 
+.frm{
+ 	text-align: center;
+ 	color: white;
+ background-color: black;
+ border-radius:20px;
+ padding: 10px;}
+ 
+ tr{margin-bottom: 10px;}
+ .table{
+font-size: 20px;
+font-style: oblique;
+line-height: 10px;
+ 	}
+
+ 

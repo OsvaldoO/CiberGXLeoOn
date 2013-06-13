@@ -13,12 +13,6 @@ class Login extends CI_Controller
    
     public function index()
     {
-        if(!isset($_POST['user']))
-        {
-        		$this->vista('login/login'); //si no recibimos datos por post, cargamos la vista del formulario
-        }
-        else
-        {
         //definimos las reglas de validación
        
         $this->form_validation->set_rules('user','Usuario','required|min_lenght[5]|max_lenght[20]');
@@ -26,7 +20,7 @@ class Login extends CI_Controller
        
             if($this->form_validation->run() == FALSE) //si no supera las reglas de validación se recarga la vista del formulario
             {
-           		 $this->vista('login/login_error');
+           		 $this->vista('error/login_error');
             }
             else
             {
@@ -47,29 +41,18 @@ class Login extends CI_Controller
                                     'avatar' => $isValidLogin[0]['avatar']
                                         );
                 $this->session->set_userdata($sesion_data);
-                $this->vista('usuarios/index');
+                $this->vista('index');
                 }
                 else
                 {
                 // si es erroneo, devolvemos un mensaje de error
-                		$this->vista('login/login_error');
+                		$this->vista('error/login_error');
                 }
             }
-        }
     }
 
-  public function vista($vista,$data=false) 
+	public function vista($vista,$data=false) 
 	{
-		if($this->session->userdata('user'))
-		{
-		 $data['nick'] = $this->session->userdata['user'];
-    $data['nombre'] = $this->session->userdata['nombre'];
-    $data['email'] = $this->session->userdata['email'];
-    $data['puntos'] = $this->session->userdata['puntos'];
-    $data['rol'] = $this->session->userdata['rol'];
-    $data['credito'] = $this->session->userdata['credito'];
-    $data['avatar'] = $this->session->userdata['avatar'];										
-		}
 		$this->load->view('header',$data);
 		$this->load->view($vista);
 		$this->load->view('footer');
@@ -93,21 +76,5 @@ class Login extends CI_Controller
     $this->vista('index');
     }
    
-   
-    public function perfil()
-    {
-    //pagina restringida a usuarios registrados.
-    $logged = $this->login_mdl->isLogged();
-       
-        if($logged == TRUE)
-        {
-        		echo "Tienes permiso para ver el contenido privado";
-        }
-        else
-        {
-        //si no tiene permiso, abrimos el formulario para loguearse       	
-       		 $this->vista('login/login');
-        }
-    }
 }
 ?>

@@ -15,7 +15,11 @@ class Evento extends CI_Model
     		return $query->row();
 		}
 	
-
+  public function cancela($usuario, $numero) {
+			$this->db->query("DELETE FROM inscripciones WHERE numero=$numero and usuario='$usuario'");    	
+    	}
+    	
+    	
 	public function noInscrito($usuario,$numero)
     {
 			$query = $this->db->query("SELECT * FROM inscripciones WHERE usuario = '$usuario'");

@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://alanturing.cucei.udg.mx/cc409/rentajuegos/';
+$config['base_url']	= 'http://localhost/cde/';
 
 /*
 |--------------------------------------------------------------------------

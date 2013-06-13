@@ -14,15 +14,19 @@ class Logros extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->library('session');
 		$this->listar();
 	}
 	
 		public function listar($usuario = false) {
-		if(!$usuario) $usuario=$this->session->userdata('user');
-		$data['logros'] = $this->get_db->getRegistros('logros','usuario',$usuario);
-		$data['usr']=$usuario;
-		$this->vista('logros',$data);
+		$this->vista('logros/index');
+		}
+		
+		public function getLogros($logros = false) {
+			if($this->session->userdata('user'))
+			{
+				$logros = $this->get_db->getRegistros('logros','usuario',$this->session->userdata('user'));
+			}
+			echo json_encode($logros);
 		}
 		
 	public function nuevo()
@@ -61,17 +65,6 @@ class Logros extends CI_Controller {
 		
 	public function vista($vista,$data=false) 
 	{
-		
-		if($this->session->userdata('user'))
-		{
-		 $data['nick'] = $this->session->userdata['user'];
-    $data['nombre'] = $this->session->userdata['nombre'];
-    $data['email'] = $this->session->userdata['email'];
-    $data['puntos'] = $this->session->userdata['puntos'];
-    $data['rol'] = $this->session->userdata['rol'];
-    $data['credito'] = $this->session->userdata['credito'];
-    $data['avatar'] = $this->session->userdata['avatar'];											
-		}
 		$this->load->view('header',$data);
 		$this->load->view($vista);
 		$this->load->view('footer');

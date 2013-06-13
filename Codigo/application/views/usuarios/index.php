@@ -1,27 +1,36 @@
-<?php if (isset($nick) ): ?>
-<link rel="stylesheet" href="<?php echo CSS_URL;?>perfil.css" type="text/css" />
-<section>
-<h2><?php echo $nick; ?></h2>
-<?php $this->load->helper('url');?>
 <div id="perfil">
-			<div class="img_r img_2">
-			<img src="<?php echo $avatar; ?> " alt="<?php echo $nick; ?>"/>
-			</div>
-			
-			<div class="info">
-			<div>Nivel de Pribilegios: <?php echo $rol; ?></div>
-			<div>Credito Acumulado: <?php echo $credito; ?> $</div>
-			<div>Puntos Ganados: <?php echo $puntos; ?> Puntos</div>
-				<div class="user_info">
-				<ul>
-				<li>Nombre Completo: <?php echo $nombre; ?></li>
-				<li>Email: <?php echo $email; ?></li>
-				</ul>
-				</div>
-    </div>
+<h2 id="user" ></h2>
+<div class=" hero-unit" >
+<img id="pimg" class="img-rounded" alt=""/>
+<dl class="dl-horizontal">
+<dt>Pribilegio</dt> <dd id="prol" ></dd>
+<dt>Credito </dt> <dd id="pcre"> </dd>
+<dt>Puntos </dt><dd id="ppun"></dd>
+<dt>Nombre </dt> <dd id="pnom"></dd>
+<dt>Email</dt> <dd id="pema"></dd>
+</dl> </div>
+<a class="btn-primary" href="editar" >Editar</a>
+</div>
 
- </div> 
-</section>
-<?php else: ?>
-	<h4>Error Has iniciado Seccion</h4>
-<?php endif; ?>				
+<script type="text/javascript" >
+$.ajax({url: "<?php echo base_url(); ?>usuarios/getRol"}).done(function( rol ) {
+if(rol > 0){
+$.getJSON( "<?php echo base_url(); ?>usuarios/seccion", function( usuario ) {
+		if (usuario){ 
+		$("#user").html(usuario['user']);
+		$("#pimg").attr("src",usuario['avatar']);
+		$("#prol").html(usuario['rol']);
+		$("#pcre").html(usuario['credito']);
+		$("#ppun").html(usuario['puntos']);
+		$("#pnom").html(usuario['nombre']);
+		$("#pema").html(usuario['email']);
+	}
+});
+}
+else{
+	$("#perfil").html('<h4 class="text-error" >Error No Has iniciado Seccion</h4>');
+}});
+</script>
+
+
+			

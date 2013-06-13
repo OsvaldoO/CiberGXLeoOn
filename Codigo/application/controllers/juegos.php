@@ -7,6 +7,7 @@ class Juegos extends CI_Controller {
     parent:: __construct();
     $this->load->model('get_db');
     $this->load->helper('form');
+    	$this->load->model('juego');
     $this->load->library('form_validation');
     $this->load->library('session');
     $this->load->library('my_validation');
@@ -17,18 +18,26 @@ class Juegos extends CI_Controller {
   	$this->vista('juegos/categoria');	
 	}
 	
-	public function listar($genero=false) 
+	public function listar($genero=false,$pag=1) 
 		{
 			if(!$genero)
-		 			$this->vista('juegos/categoria');
-		 	else 
-		 	{
-		 		$this->load->model('get_db');
-				$data['juegos']= $this->get_db->getRegistros('juegos','genero',$genero);
+					{
+					  	$this->vista('juegos/categoria');	
+					}
+			else {
+				$data['categoria']= $genero;
 		 		$this->vista('juegos/listar',$data);
-		 		}	
+		 		}
 		}
 		
+		public function getJuegos($categoria=false)
+		{
+				if($categoria){
+				echo json_encode($this->juego->getCategoria($categoria));
+				}
+				else { echo json_encode($this->get_db->getAll('juegos'));
+				}
+		}
 		
 	public function nuevo(){
 					$data = array();
@@ -40,7 +49,7 @@ class Juegos extends CI_Controller {
         else
         {
         //definimos las reglas de validación
-        $this->form_validation->set_rules('nombre','Nombre','min_lenght[3]|alpha_dash|required|max_lenght[200]');
+        $this->form_validation->set_rules('nombre','Nombre','min_lenght[3]|alpha_dash|is_unique[juegos.nombre]|required|max_lenght[200]');
         if(!$this->my_validation->valid_url($this->input->post('imagen')) || !$this->my_validation->validaUrl($this->input->post('imagen')))
         {
        				$data['message'] = "Url de la imagen no valida";
@@ -70,16 +79,6 @@ class Juegos extends CI_Controller {
 		
 	public function vista($vista,$data=false) 
 	{
-		if($this->session->userdata('user'))
-		{
-		 $data['nick'] = $this->session->userdata['user'];
-    $data['nombre'] = $this->session->userdata['nombre'];
-    $data['email'] = $this->session->userdata['email'];
-    $data['puntos'] = $this->session->userdata['puntos'];
-    $data['rol'] = $this->session->userdata['rol'];
-    $data['credito'] = $this->session->userdata['credito'];
-    $data['avatar'] = $this->session->userdata['avatar'];											
-		}
 		$this->load->view('header',$data);
 		$this->load->view($vista);
 		$this->load->view('footer');

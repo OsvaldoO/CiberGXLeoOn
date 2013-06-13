@@ -1,21 +1,34 @@
-<?php if (isset($nick) ): ?>
-<div class="form">
+<div id="editar">
+<h2>Editar Perfil</h2>
+<div id="frm_edi" class="frm hide">
 <form method="post" action="<?php APPPATH ?>editar">
 <h6 class="error" style="color:red;"><?php echo validation_errors(); ?></h6>
-    <input type="hidden" name="nick" value="<?php echo $nick ?>" /></p>
-    <p>Nombre:<br />
-    <input type="texto" name="nombre" value="<?php echo $nombre ?>" /></p>
+    <input id="nik" type="hidden" name="nick" value="" /></p>
+    <label>Nombre:<label />
+    <input id="nom" class="input-xlarge" type="text" name="nombre" value="" />
     
-    <p>Email:<br />
-    <input type="texto" name="email" value="<?php echo $email ?>" /></p>
+    <label>Email</label>
+    <input id="emi" type="text" class="input-xlarge" name="email" value="" />
     
-    <p>Avatar:<br />
-    <input type="texto" name="avatar" value="<?php echo $avatar ?>" /></p>
+    <label>Avatar</label>
+    <input id="ava" class="input-xlarge" type="text" name="avatar" value="" />
     
-    <p><input type="submit" class="button" value="Editar" /></p>
+    <p><input type="submit" class="btn btn-success" value="Editar" /></p>
 </form>
 </div>
-<h6 class="session"><?php echo anchor('usuarios/cambiarPass',"Cambiar Password");?></h6>
-<?php else: ?>
-<h4>No has iniciado Seccion</h4>
-<?php endif; ?>										
+</div>
+
+<script type="text/javascript" >
+$.getJSON( "<?php echo base_url(); ?>usuarios/seccion", function( usuario ) {
+				if (usuario){ 
+				 		$("#nik").attr("value",usuario['user']);
+				 		$("#nom").attr("value",usuario['nombre']);
+				 		$("#emi").attr("value",usuario['email']);
+				 		$("#ava").attr("value",usuario['avatar']);
+				 		$("#frm_edi").after('<h6 class="btn"><?php echo anchor("usuarios/cambiarPass","Cambiar Password");?></h6>');
+				 		$("#frm_edi").show();
+		 		}
+		 		else 		 $("#editar").html('<h4>No has iniciado Seccion</h4>');
+		 });
+
+</script>							

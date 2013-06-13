@@ -15,15 +15,7 @@ class Usuarios extends CI_Controller {
     
 	public function index()
 	{
-		if($this->session->userdata('user'))
-		{
 			$this->vista('usuarios/index');
-		}
-		else 
-		{
-			$data['mensaje']= "SECCION NO INICIADA";
-			$this->vista('error/mensaje',$data);
-		}
 	}
 	
 	public function registro() {
@@ -37,7 +29,7 @@ class Usuarios extends CI_Controller {
         {
         //definimos las reglas de validación
         $this->form_validation->set_rules('nombre','Nombre','alpha|min_lenght[3]|max_lenght[50]');
-        $this->form_validation->set_rules('nick','Nick','required|alpha_numeric|min_lenght[5]|max_lenght[20]');
+        $this->form_validation->set_rules('nick','Nick','required|alpha_numeric|is_unique[usuarios.nick]|min_lenght[5]|max_lenght[20]');
         $this->form_validation->set_rules('email','Email','required|valid_email|is_unique[usuarios.email]');
         $this->form_validation->set_rules('pass','Password','required');
         $this->form_validation->set_rules('repass','Re-Password','required');
@@ -69,8 +61,8 @@ class Usuarios extends CI_Controller {
     		}
 			$this->get_db->inserta('usuarios',$data);
 			$this->vista('index');
-         }
-        }
+      }
+    }
 		}	
 	
 	
@@ -109,17 +101,50 @@ class Usuarios extends CI_Controller {
 	      else 
 	      {
 	      		$pass = array(
-	       			'pass' => $this->input->post('pass'));
+	       		'pass' => $this->input->post('pass'));
 	      		$this->usuario->cambiaPass($this->session->userdata('user'),$pass); 
 	      		$this->session->set_userdata($pass);
 	      		$this->vista('usuarios/exito',$data);
 	      }
 	   }
 	}
+
+
+	public function generaPdf(){
+		 $usuarios=$this->usuario->listaTop();
+		 $this->load->library('fpdf');
+		 $this->_pdf = new FPDF;
+		 $this->_pdf->AddPage();
+       $this->_pdf->SetFont('Arial','B',16);
+       $this->_pdf->Cell(50,17,'Nick',1,0,'C');
+       $this->_pdf->Cell(100,17,'Email',1,0,'C');
+       $this->_pdf->Cell(20,17,'Puntos',1,1,'C');
+       $this->_pdf->Ln();
+       for($i=0;$i<count($usuarios);$i++){
+       $this->_pdf->Cell(50,15, utf8_decode($usuarios[$i]->nick ),1);
+		 $this->_pdf->Cell(100,15, utf8_decode($usuarios[$i]->email ),1);
+		 $this->_pdf->Cell(20,15, utf8_decode($usuarios[$i]->puntos ),1);
+       $this->_pdf->Ln();}
+       $this->_pdf->Output();
+		}
+
+	
+		public function todos($pag=1) {
+		$this->vista('usuarios/todos');
+		}
 		
+		public function getUsuarios() {
+		$usuarios = $this->get_db->getAll("usuarios");
+		echo  json_encode($usuarios);
+		}
+
 	public function listar() {
-		$data['usuarios'] = $this->usuario->listaTop();
-		$this->vista('usuarios/listar',$data);
+		$this->vista('usuarios/listar');
+		}
+		
+		public function getTop() {
+		$usuarios = $this->usuario->listaTop();
+		echo json_encode($usuarios);
 		}
 		
 		public function editar()
@@ -133,28 +158,33 @@ class Usuarios extends CI_Controller {
 					$data = array(
 	       	'nombre' => $this->input->post('nombre'),
 	       	'email' => $this->input->post('email'),
-	       	'pass' => $this->input->post('pass'),
 	        'avatar' => $this->input->post('avatar'),
           );
-         $this->session->set_userdata($data);
-						$this->get_db->editar('nick',$this->input->post('nick'),"usuarios", $data);
+        $this->session->set_userdata($data);
+					$this->get_db->editar('nick',$this->input->post('nick'),"usuarios", $data);
 					$this->vista('usuarios/index');    
 					}	
 	}
+	
+	public function seccion($sec = false) {
+		if($this->session->userdata('user')){
+			$sec = json_encode($this->session->userdata);
+			}
+			echo $sec;
+		}
+		
+		public function getRol($rol = 0) 
+		{
+			if($this->session->userdata('user')){
+						$rol++;
+						if($this->session->userdata('rol') == 'admin')
+							$rol++;				
+				}
+				echo $rol;
+		}
 
 	public function vista($vista,$data=false) 
 	{
-	if($this->session->userdata('user'))
-	{
-	$data['nick'] = $this->session->userdata['user'];
-    $data['nombre'] = $this->session->userdata['nombre'];
-    $data['email'] = $this->session->userdata['email'];
-    $data['puntos'] = $this->session->userdata['puntos'];
-    $data['rol'] = $this->session->userdata['rol'];
-    $data['credito'] = $this->session->userdata['credito'];
-    $data['avatar'] = $this->session->userdata['avatar'];		
-    $data['pass'] = $this->session->userdata['pass'];											
-		}
 		$this->load->view('header',$data);
 		$this->load->view($vista);
 		$this->load->view('footer');

@@ -8,6 +8,12 @@ class Usuario extends CI_Model
     		return $query->result();
     }
     
+    	public function getPag($ini)
+			{
+				$query= $this->db->query("SELECT * FROM usuarios LIMIT $ini,10");
+				return $query->result(); 
+			}
+    
     public function correctPass($usuario,$pass)
     {
 			$query = $this->db->query("SELECT pass FROM usuarios WHERE nick = '$usuario'");
@@ -17,6 +23,11 @@ class Usuario extends CI_Model
     					return true;	
     				}
     		return false;
+    	}
+
+    	public function getNoPag() {
+					$query = $this->db->query("SELECT * FROM usuarios");
+					return $query->num_rows()/10;
     	}
     	
     	public function cambiaPass($usuario, $pass) {

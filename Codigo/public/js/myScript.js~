@@ -1,0 +1,15 @@
+function getSeccion(){
+$.getJSON( "<?php echo base_url(); ?>usuarios/seccion", function( datos ) {
+	return datos;	
+	}
+	return false;
+}
+
+function esAdmin(){
+		$.getJSON( "<?php echo base_url(); ?>usuarios/seccion", function( datos )
+		 {
+			if(datos['rol'] == 'admin')
+				return true;
+		}
+		return false;
+	}

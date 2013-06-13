@@ -21,9 +21,12 @@ class Eventos extends CI_Controller {
 	}
 	
 	public function listar() {
+		$this->vista('eventos/listar');
+		}
 		
-		$data['eventos'] = $this->evento->listaLast();
-		$this->vista('eventos/listar',$data);
+		public function getEventos($eventos = false) {		
+		$eventos = $this->evento->listaLast();
+		echo json_encode($eventos);
 		}
 		
 	public function Evento($numero)
@@ -91,25 +94,31 @@ class Eventos extends CI_Controller {
 		}
 		$this->ver();
 	}
+	
+	public function cancelar($numero)
+	{
+		$this->evento->cancela($this->session->userdata('user'),$numero);
+		$this->ver();
+	}
 		
 	public function ver()
 	{
 		$data['eventos'] = $this->evento->misEventos($this->session->userdata('user'));
 		$this->vista('usuarios/inscripciones',$data);	
 	}		
+	
+	public function getMisEventos()
+	{
+		$eventos = false;
+		if($this->session->userdata('user'))
+		{
+		$eventos = $this->evento->misEventos($this->session->userdata('user'));
+		}
+		echo json_encode($eventos);
+	}		
 		
 	public function vista($vista,$data=false) 
 	{
-		if($this->session->userdata('user'))
-		{
-		 $data['nick'] = $this->session->userdata['user'];
-    $data['nombre'] = $this->session->userdata['nombre'];
-    $data['email'] = $this->session->userdata['email'];
-    $data['puntos'] = $this->session->userdata['puntos'];
-    $data['rol'] = $this->session->userdata['rol'];
-    $data['credito'] = $this->session->userdata['credito'];
-    $data['avatar'] = $this->session->userdata['avatar'];											
-		}
 		$this->load->view('header',$data);
 		$this->load->view($vista);
 		$this->load->view('footer');
