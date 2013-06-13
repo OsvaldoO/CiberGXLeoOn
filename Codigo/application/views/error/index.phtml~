@@ -1,6 +1,0 @@
-<h2><?php if(isset($mensaje)) echo $mensaje; ?></h2>
-
-<p>&nbsp;</p>
-
-<a href="<?php echo BASEPATH; ?>">Ir al Inicio</a> | 
-<a href="javascript:history.back(1)">Volver a la p&aacute;gina anterior</a>

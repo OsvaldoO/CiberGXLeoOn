@@ -1,1 +1,0 @@
-<h2>Que pasooooo?? <?php if(isset($mensaje)) echo $mensaje; ?></h2>
